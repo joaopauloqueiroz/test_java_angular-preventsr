@@ -1,0 +1,53 @@
+<h1>Filtrar Logs por Ip</h1>
+
+<div class="col-md-12">
+    <form [formGroup]="logFilter" (ngSubmit)="onFormSubmit(logFilter.value)">
+        <div class="form-group">
+            <label for="ip">Ip-Address</label>
+            <mat-form-field class="full-width-field">
+            <input matInput  formControlName="ip" placeholder = "Digite um ip valido">
+         </mat-form-field>
+        </div>
+        <button class="btn btn-success" type="submit" >Buscar Logs</button>
+    </form>
+        <br />
+
+        <div *ngIf="condition">
+                <br />
+                <div class="alert alert-danger">{{errors}}</div>
+            </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th>Date</th>
+                <th>Ip</th>
+                <th>Status</th>
+                <th>Request</th>
+                <th>User Agent</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let l of logs">
+                    <td >
+                        {{l.date}}
+                    </td>
+                    <td >
+                        {{l.ip}}
+                    </td>
+                    <td >
+                        {{l.status}}
+                    </td>
+                    <td >
+                        {{l.request}}
+                    </td>
+                    <td >
+                        {{l.userAgent}}
+                    </td>
+                    <td >
+                        <button class="btn btn-danger" (click)="delete(l.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

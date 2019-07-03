@@ -1,0 +1,50 @@
+<h1>Criar um novo Log</h1>
+
+<div class="col-md-12">
+    <form [formGroup]="logForm" (ngSubmit)="onFormSubmit(logForm.value)">
+        <div class="form-group">
+            <label for="date">Date</label>
+            <mat-form-field class="full-width-field">
+                <input matInput [matDatepicker]= "picker" [(ngModel)]="datetime" formControlName="date" placeholder = "Selecione a Data">
+                <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+             </mat-form-field>
+        </div>
+        <div class="form-group">
+            <label for="ip">Ip-Address</label>
+            <mat-form-field class="full-width-field">
+            <input matInput  formControlName="ip" placeholder = "Digite um ip valido">
+         </mat-form-field>
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <mat-form-field class="full-width-field">
+                <input matInput type="number" formControlName="status" placeholder = "Insira um status Code">
+             </mat-form-field>
+        </div>
+        <div class="form-group">
+            <label for="request">Request</label>
+            <mat-form-field class="full-width-field">
+                <input matInput formControlName="request" placeholder = "Insira um método de Request">
+             </mat-form-field>
+        </div>
+        <div class="form-group">
+            <label for="userAgent">User Agent</label>
+            <mat-form-field class="full-width-field">
+                <input matInput formControlName="userAgent" placeholder="Insira um User Agente">
+             </mat-form-field>
+        </div>
+
+
+        <div *ngIf="condition">
+                <br />
+                <div class="alert alert-danger">
+                        <div *ngFor="let error of errors">
+                                <li>{{error}}</li>
+                            </div>
+                    </div>
+            </div>
+
+        <button class="btn btn-success" type="submit" >Salvar Log</button>
+    </form>
+</div>

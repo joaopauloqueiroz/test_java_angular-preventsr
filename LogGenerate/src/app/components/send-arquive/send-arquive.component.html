@@ -1,0 +1,14 @@
+<div class="col-md-12">
+    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="file">Selecione o Arquivo</label>
+            <input type="file" name="profile" (change)="onFileSelect($event)" />
+        </div>
+        <button class="btn btn-success" type="submit" >Buscar Logs</button>
+    </form>
+
+    <div *ngIf="condition">
+        <br />
+        <div class="alert alert-danger">{{errors}}</div>
+    </div>
+</div>
